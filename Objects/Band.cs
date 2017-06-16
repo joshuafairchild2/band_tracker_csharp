@@ -186,6 +186,11 @@ namespace BandTracker.Objects
       return venues;
     }
 
+    public List<Member> GetMembers()
+    {
+      return null;
+    }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();

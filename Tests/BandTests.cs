@@ -97,10 +97,32 @@ namespace BandTracker.Objects
       Assert.Equal(controlList, testList);
     }
 
+    [Fact]
+    public void Band_GetMembers_ReturnsListOfMembers()
+    {
+      Band band = new Band("The Beatles", 4);
+      band.Save();
+      Band band2 = new Band("Phantogram", 2);
+      band2.Save();
+
+      Member member1 = new Member("John", band.Id);
+      member1.Save();
+      Member member2 = new Member("John", band.Id);
+      member2.Save();
+      Member member3 = new Member("John", band2.Id);
+      member3.Save();
+
+      List<Member> testList = band.GetMembers();
+      List<Member> controlList = new List<Member>{member1, member2};
+
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       Band.DeleteAll();
       Venue.DeleteAll();
+      Member.DeleteAll();
     }
   }
 }
