@@ -144,6 +144,16 @@ namespace BandTracker.Objects
       DB.CloseConnection();
     }
 
+    public void AddBand(Band toAdd)
+    {
+
+    }
+
+    public List<Band> GetBands()
+    {
+      return null;
+    }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();

@@ -81,9 +81,26 @@ namespace BandTracker.Objects
       Assert.Equal(controlVenue, venue);
     }
 
+    [Fact]
+    public void Venue_AddBand_CreatesRelationShipInDB()
+    {
+      Band band = new Band("The Beatles", 4);
+      band.Save();
+      Venue venue = new Venue("Wonder Ballroom", "128 NE Russell St");
+      venue.Save();
+
+      venue.AddBand(band);
+
+      List<Band> testList = venue.GetBands();
+      List<Band> controlList = new List<Band>{band};
+
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       Venue.DeleteAll();
+      Band.DeleteAll();
     }
   }
 }
