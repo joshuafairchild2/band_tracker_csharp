@@ -150,7 +150,7 @@ namespace BandTracker
           foreach(string id in values)
           {
             Band toDelete = Band.Find(int.Parse(id));
-            toDelete.Delete();
+            selectedVenue.DeleteBandRelationship(toDelete);
           }
         }
         model.Add("selected-venue", selectedVenue);

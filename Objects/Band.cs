@@ -112,7 +112,10 @@ namespace BandTracker.Objects
       {
         rdr.Close();
       }
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
 
       return foundBand;
     }
