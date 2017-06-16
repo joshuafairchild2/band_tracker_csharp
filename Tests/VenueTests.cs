@@ -75,7 +75,7 @@ namespace BandTracker.Objects
       Venue venue = new Venue("The Overlook", "123 1st Street");
       venue.Save();
 
-      Venue controlVenue = new Venue("Wonder Ballroom", "128 NE Russell St");
+      Venue controlVenue = new Venue("Wonder Ballroom", "128 NE Russell St", venue.Id);
       venue.Update("Wonder Ballroom", "128 NE Russell St");
 
       Assert.Equal(controlVenue, venue);
