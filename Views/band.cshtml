@@ -1,0 +1,25 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">@Model["selected-band"].Name</h2>
+<hr>
+<div class="row">
+  <div class="col-sm-6">
+    <h3>Venues that this bnd has played:</h3>
+    @if(Model["band-venues"].Count ==0)
+    {
+      <h4>We know of no venues that this band has played. If you know of one they have, feel free to <a href='/bands/@Model["selected-band"].Id/venues/add'>add it.</a></h4>
+    }
+    else
+    {
+      @foreach(var venue in Model["band-venues"])
+      {
+        <h3>Name: @venue.Name <small>Address: @venue.Address</small></h3>
+      }
+    }
+  </div>
+  <div class="col-sm-6">
+    <p>Other stuff over here?</p>
+  </div>
+</div>
