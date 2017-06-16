@@ -6,12 +6,41 @@
 <hr>
 <div class="row">
   <div class="col-sm-6">
-    <h3>Bands who have played this venue:</h3>
-    @if(Model["venue-bands"].Count ==0)
+    <h3>Bands who play at this venue:</h3>
+
+    @if(Model["venue-bands"].Count != 0 && !(Model.ContainsKey("list-edit")))
     {
-      <h4>We know of no bands who have played at this venue. If you know of one who has, feel free to <a href='/venues/@Model["selected-venue"].Id/bands/new'>add them.</a></h4>
+      <form action='/venues/@Model["selected-venue"].Id/bands/delete/'>
+        <button type="submit" class="btn btn-primary">Edit list</button>
+      </form>
     }
-    else
+
+    @if(Model.ContainsKey("list-edit"))
+    {
+      <form action='/venues/@Model["selected-venue"].Id/bands/delete/' method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-danger">Delete selected bands</button>
+        @foreach(var band in Model["venue-bands"])
+        {
+          <h3><input type="checkbox" name="band" value="@band.Id"> @band.Name</h3>
+          <h4>Members:</h4>
+          <ul>
+            @foreach(var member in @band.GetMembers())
+            {
+              <li>@member.Name</li>
+            }
+          </ul>
+        }
+      </form>
+    }
+
+
+    @if(Model["venue-bands"].Count == 0)
+    {
+      <h4>We know of no bands who play this venue. If you know of one who has, feel free to <a href='/venues/@Model["selected-venue"].Id/bands/new'>add them.</a></h4>
+    }
+
+    @if(Model["venue-bands"].Count != 0 && !(Model.ContainsKey("list-edit")))
     {
       @foreach(var band in Model["venue-bands"])
       {
