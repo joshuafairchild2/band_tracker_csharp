@@ -17,9 +17,41 @@ namespace BandTracker.Objects
       NumberOfMembers = numberOfMembers;
     }
 
+    public override bool Equals(System.Object otherBand)
+    {
+      if (!(otherBand is Band))
+      {
+        return false;
+      }
+      else
+      {
+        Band newBand = (Band) otherBand;
+        return (this.Id == newBand.Id &&
+                this.Name == newBand.Name &&
+                this.NumberOfMembers == newBand.NumberOfMembers);
+      }
+    }
+
     public void Save()
     {
-      
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO bands (name, number_of_members) OUTPUT INSERTED.id VALUES (@BandName, @BandMembers)", conn);
+
+      cmd.Parameters.Add(new SqlParameter("@BandName", this.Name));
+      cmd.Parameters.Add(new SqlParameter("@BandMembers", this.NumberOfMembers));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+      while(rdr.Read())
+      {
+        this.Id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
     }
 
     public static List<Band> GetAll()
