@@ -44,6 +44,7 @@ namespace BandTracker.Objects
         allVenues.Add(newVenue);
       }
 
+
       if (rdr != null)
       {
         rdr.Close();
@@ -51,6 +52,31 @@ namespace BandTracker.Objects
       DB.CloseConnection();
 
       return allVenues;
+    }
+
+    public void Save()
+    {
+
+    }
+
+    public static Venue Find(int idToFind)
+    {
+      return null;
+    }
+
+    public void Update(string newName, string newAddress)
+    {
+
+    }
+
+    public void Delete()
+    {
+
+    }
+
+    public static void DeleteAll()
+    {
+
     }
   }
 }
