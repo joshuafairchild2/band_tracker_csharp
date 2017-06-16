@@ -221,7 +221,7 @@ namespace BandTracker.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM bands WHERE id = @BandId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM bands WHERE id = @BandId; DELETE FROM venues_bands WHERE id = @BandId; DELETE FROM members WHERE band_id = @BandId;", conn);
       cmd.Parameters.Add(new SqlParameter("BandId", this.Id));
       cmd.ExecuteNonQuery();
       DB.CloseConnection();
@@ -232,7 +232,7 @@ namespace BandTracker.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM bands;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM bands; DELETE FROM venues_bands;", conn);
       cmd.ExecuteNonQuery();
       DB.CloseConnection();
     }
