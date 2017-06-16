@@ -113,7 +113,7 @@ namespace BandTracker.Objects
       member3.Save();
 
       List<Member> testList = band.GetMembers();
-      List<Member> controlList = new List<Member>{member2, member1};
+      List<Member> controlList = new List<Member>{member1, member2};
 
       Assert.Equal(controlList, testList);
     }
