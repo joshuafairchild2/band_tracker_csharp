@@ -10,6 +10,13 @@ namespace BandTracker.Objects
     public string Name {get;set;}
     public int NumberOfMembers {get;set;}
 
+    public Band()
+    {
+      Id = 0;
+      Name = null;
+      NumberOfMembers = 0;
+    }
+
     public Band(string name, int numberOfMembers, int id = 0)
     {
       Id = id;
@@ -85,7 +92,29 @@ namespace BandTracker.Objects
 
     public static Band Find(int idToFind)
     {
-      return null;
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM bands WHERE id = @BandId", conn);
+      cmd.Parameters.Add(new SqlParameter("BandId", idToFind));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      Band foundBand = new Band();
+      while (rdr.Read())
+      {
+        foundBand.Id = rdr.GetInt32(0);
+        foundBand.Name = rdr.GetString(1);
+        foundBand.NumberOfMembers = rdr.GetInt32(2);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+
+      return foundBand;
     }
 
     public static void DeleteAll()

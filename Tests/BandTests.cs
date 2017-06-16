@@ -46,6 +46,7 @@ namespace BandTracker.Objects
     public void Band_Find_FindsBandById()
     {
       Band controlBand = new Band("The Beatles", 4);
+      controlBand.Save();
 
       Band testBand = Band.Find(controlBand.Id);
 
