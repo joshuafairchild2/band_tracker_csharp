@@ -69,6 +69,18 @@ namespace BandTracker.Objects
       Assert.Equal(controlList, testList);
     }
 
+    [Fact]
+    public void Band_Update_UpdateBandInfo()
+    {
+      Band band = new Band("The Beatles", 4);
+      band.Save();
+
+      Band controlBand = new Band("Phantogram", 2, band.Id);
+      band.Update("Phantogram", 2);
+
+      Assert.Equal(controlBand, band);
+    }
+
     public void Dispose()
     {
       Band.DeleteAll();

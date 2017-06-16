@@ -117,6 +117,11 @@ namespace BandTracker.Objects
       return foundBand;
     }
 
+    public void Update(string newName, int newMemberAmount)
+    {
+
+    }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();
