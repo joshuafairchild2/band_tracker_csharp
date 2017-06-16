@@ -17,6 +17,24 @@ namespace BandTracker.Objects
       BandId = bandId;
     }
 
+    public static List<Member> GetAll()
+    {
+      return null;
+    }
 
+    public void Save()
+    {
+
+    }
+
+    public static Member Find(int idToFind)
+    {
+      return null;
+    }
+
+    public static void DeleteAll()
+    {
+      
+    }
   }
 }
