@@ -64,7 +64,10 @@ namespace BandTracker.Objects
       {
         rdr.Close();
       }
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
 
       return allMembers;
     }
@@ -88,7 +91,10 @@ namespace BandTracker.Objects
       {
         rdr.Close();
       }
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public static Member Find(int idToFind)
@@ -113,7 +119,10 @@ namespace BandTracker.Objects
       {
         rdr.Close();
       }
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
 
       return foundMember;
     }
@@ -125,7 +134,10 @@ namespace BandTracker.Objects
 
       SqlCommand cmd = new SqlCommand("DELETE FROM members; DELETE FROM bands; DELETE FROM venues_bands;", conn);
       cmd.ExecuteNonQuery();
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
   }
 }

@@ -64,7 +64,10 @@ namespace BandTracker.Objects
       {
         rdr.Close();
       }
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
 
       return allVenues;
     }
@@ -88,7 +91,10 @@ namespace BandTracker.Objects
       {
         rdr.Close();
       }
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public static Venue Find(int idToFind)
@@ -113,7 +119,10 @@ namespace BandTracker.Objects
       {
         rdr.Close();
       }
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
 
       return foundVenue;
     }
@@ -141,7 +150,10 @@ namespace BandTracker.Objects
       {
         rdr.Close();
       }
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public void AddBand(Band toAdd)
@@ -154,7 +166,10 @@ namespace BandTracker.Objects
       cmd.Parameters.Add(new SqlParameter("@BandId", toAdd.Id));
 
       cmd.ExecuteNonQuery();
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public List<Band> GetBands()
@@ -182,7 +197,10 @@ namespace BandTracker.Objects
       {
         rdr.Close();
       }
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
 
       return bands;
     }
@@ -196,7 +214,10 @@ namespace BandTracker.Objects
 
       cmd.Parameters.Add(new SqlParameter("@BandId", toDelete.Id));
       cmd.ExecuteNonQuery();
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public void Delete()
@@ -207,7 +228,10 @@ namespace BandTracker.Objects
       SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId; DELETE FROM venues_bands WHERE venue_id = @VenueId", conn);
       cmd.Parameters.Add(new SqlParameter("@VenueId", this.Id));
       cmd.ExecuteNonQuery();
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public static void DeleteAll()
@@ -217,7 +241,10 @@ namespace BandTracker.Objects
 
       SqlCommand cmd = new SqlCommand("DELETE FROM venues; DELETE FROM venues_bands;", conn);
       cmd.ExecuteNonQuery();
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
   }
 }

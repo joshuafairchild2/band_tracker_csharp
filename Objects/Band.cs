@@ -165,7 +165,10 @@ namespace BandTracker.Objects
       cmd.Parameters.Add(new SqlParameter("@BandId", this.Id));
 
       cmd.ExecuteNonQuery();
-      DB.CloseConnection();
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public List<Venue> GetVenues()
