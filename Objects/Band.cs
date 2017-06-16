@@ -119,7 +119,13 @@ namespace BandTracker.Objects
 
     public void Delete()
     {
-      
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM bands WHERE id = @BandId", conn);
+      cmd.Parameters.Add(new SqlParameter("BandId", this.Id));
+      cmd.ExecuteNonQuery();
+      DB.CloseConnection();
     }
 
     public static void DeleteAll()
