@@ -2,20 +2,33 @@
   Layout="Shared/_Layout.cshtml";
 }
 
-@if(Model.Count == 0)
-{
-  <h3>There are no venues listed. Would you like to <a href="/venues/new">add one?</a></h3>
-}
-else
-{
-  <form action="/venues/new">
-    <button type="submit" class="btn btn-primary">Add venue</button>
-  </form>
-  @foreach(var venue in Model)
-  {
-    <h3><a href="/venues/@venue.Id">@venue.Name</a></h3>
-  }
-}
+<div class="row">
+  <div class="col-sm-6">
+    @if(Model.Count == 0)
+    {
+      <h3>There are no venues listed. Would you like to <a href="/venues/new">add one?</a></h3>
+    }
+    else
+    {
+      @foreach(var venue in Model)
+      {
+        <h3><a href="/venues/@venue.Id">@venue.Name</a></h3>
+      }
+    }
+  </div>
+  <div class="col-sm-6">
+    @if(Model.Count != 0)
+    {
+      <form action="/venues/new">
+        <button type="submit" class="btn btn-primary">Add venue</button>
+      </form>
+      <form action="/venues/delete" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-danger">Delete all venues</button>
+      </form>
+    }
+  </div>
+</div>
 
 <form action="/" class="text-center">
   <button type="submit" class="btn btn-info">Home</button>

@@ -5,7 +5,7 @@
 <form action='/bands/@Model["selected-band"].Id/venues/new' method="post">
   <div class="form-group">
     <label>Select a venue that this band has played:</label>
-    <select name="venue-select" class="form-control">
+    <select name="venue-select" class="form-control" required>
       @foreach(var venue in @Model["all-venues"])
         {
           @if(@Model["band-venues"].Count != 0)

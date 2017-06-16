@@ -105,6 +105,16 @@ namespace BandTracker
         model.Add("all-venues", Venue.GetAll());
         return View["band.cshtml", model];
       };
+      Delete["/bands/delete"] = _ => {
+        Band.DeleteAll();
+        List<Band> allBands = Band.GetAll();
+        return View["bands.cshtml", allBands];
+      };
+      Delete["/venues/delete"] = _ => {
+        Venue.DeleteAll();
+        List<Venue> allVenues = Venue.GetAll();
+        return View["venues.cshtml", allVenues];
+      };
     }
   }
 }

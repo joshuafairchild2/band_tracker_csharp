@@ -9,17 +9,17 @@
     <form action="/bands/new/" method="post">
       <div class="form-group">
         <label>Band name:</label>
-        <input type="text" name="band-name" class="form-control">
+        <input type="text" name="band-name" class="form-control" required>
       </div>
       @for(var i = 0; i < @Model["members"]; i++)
       {
         <div class="form-group">
           <label>Member name:</label>
-          <input type="text" name="member-name">
+          <input type="text" name="member-name" required>
         </div>
       }
       <button type="submit" class="btn btn-primary">Add Venue</button>
-      <input type="hidden" name="members" value='@Model["members"]'>
+      <input type="hidden" name="members" value='@Model["members"]' required>
     </form>
   }
 }
@@ -28,7 +28,7 @@ else
   <form action="/bands/new/members" method="get">
     <div class="form-group">
       <label>How many members are in your group?:</label>
-      <select class="form-control" name="members-number">
+      <select class="form-control" name="members-number" required>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
