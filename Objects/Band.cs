@@ -117,6 +117,11 @@ namespace BandTracker.Objects
       return foundBand;
     }
 
+    public void Delete()
+    {
+      
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

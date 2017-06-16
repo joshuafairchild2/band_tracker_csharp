@@ -53,6 +53,22 @@ namespace BandTracker.Objects
       Assert.Equal(controlBand, testBand);
     }
 
+    [Fact]
+    public void Band_Delete_DeletesSingleBand()
+    {
+      Band band1 = new Band("The Beatles", 4);
+      band1.Save();
+      Band band2 = new Band("Phantogram", 2);
+      band2.Save();
+
+      band1.Delete();
+
+      List<Band> testList = Band.GetAll();
+      List<Band> controlList = new List<Band>{band2};
+
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       Band.DeleteAll();
