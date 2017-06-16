@@ -19,7 +19,7 @@
     {
       <form action='/venues/@Model["selected-venue"].Id/bands/delete/' method="post">
         <input type="hidden" name="_method" value="DELETE">
-        <button type="submit" class="btn btn-danger">Remove selected bands</button>
+        <button type="submit" class="btn btn-danger">Remove from list</button>
         @foreach(var band in Model["venue-bands"])
         {
           <h3><input type="checkbox" name="band" value="@band.Id"> @band.Name</h3>
@@ -62,6 +62,10 @@
         <button type="submit" class="btn btn-primary">Add band to list</button>
       </form>
     }
+    <form action='/venues/@Model["selected-venue"].Id/delete' method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <button type="submit" class="btn btn-danger">Delete this venue</button>
+    </form>
   </div>
 </div>
 
