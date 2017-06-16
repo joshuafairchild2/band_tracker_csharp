@@ -106,14 +106,14 @@ namespace BandTracker.Objects
       band2.Save();
 
       Member member1 = new Member("John", band.Id);
+      Member member2 = new Member("Tom", band.Id);
+      Member member3 = new Member("Sam", band2.Id);
       member1.Save();
-      Member member2 = new Member("John", band.Id);
       member2.Save();
-      Member member3 = new Member("John", band2.Id);
       member3.Save();
 
       List<Member> testList = band.GetMembers();
-      List<Member> controlList = new List<Member>{member1, member2};
+      List<Member> controlList = new List<Member>{member2, member1};
 
       Assert.Equal(controlList, testList);
     }

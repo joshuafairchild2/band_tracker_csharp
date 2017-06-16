@@ -188,7 +188,32 @@ namespace BandTracker.Objects
 
     public List<Member> GetMembers()
     {
-      return null;
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM members WHERE band_id = @BandId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@BandId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Member> members = new List<Member>{};
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        int band_id = rdr.GetInt32(2);
+
+        Member newMember = new Member(name, band_id, id);
+        members.Add(newMember);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+
+      return members;
     }
 
     public void Delete()
