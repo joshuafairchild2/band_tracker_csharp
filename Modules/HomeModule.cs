@@ -19,6 +19,18 @@ namespace BandTracker
         List<Band> allBands = Band.GetAll();
         return View["bands.cshtml", allBands];
       };
+      Get["/venues/new"] = _ => {
+        return View["venue_form.cshtml"];
+      };
+      // Get["/bands/new"] = _ => {
+      //   return View["band_form.cshtml"];
+      // };
+      Post["/venues/new"] = _ => {
+        Venue newVenue = new Venue(Request.Form["venue-name"], Request.Form["venue-address"]);
+        newVenue.Save();
+        List<Venue> allVenues = Venue.GetAll();
+        return View["venues.cshtml", allVenues];
+      };
     }
   }
 }
