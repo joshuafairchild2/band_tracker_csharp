@@ -7,14 +7,14 @@
   {
     <form action='/venues/@Model["selected-venue"].Id/edit' method="post">
       <div class="form-group">
-        <label>Venue name:</label>
+        <label>Edit name:</label>
         <input type="text" name="venue-name-edit" class="form-control" required value='@Model["selected-venue"].Name'>
       </div>
       <div class="form-group">
-        <label>Venue address:</label>
+        <label>Edit address:</label>
         <input type="text" name="venue-address-edit" class="form-control" required value='@Model["selected-venue"].Address'>
       </div>
-      <button type="submit" class="btn btn-primary btn-block">Add Venue</button>
+      <button type="submit" class="btn btn-primary btn-block">Save changes</button>
     </form>
   }
   else

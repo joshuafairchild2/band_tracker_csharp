@@ -6,10 +6,10 @@
   <h2 class="text-center">@Model["selected-band"].Name</h2>
   <hr>
   <div class="col-sm-6">
-    <h3>Venues that this band plays:</h3>
-    @if(Model["band-venues"].Count ==0)
+    <h3>Venues that this band plays at:</h3>
+    @if(Model["band-venues"].Count == 0)
     {
-      <h4>We know of no venues that this band plays. If you know of one they play at, feel free to <a href='/bands/@Model["selected-band"].Id/venues/new'>add it.</a></h4>
+      <h4>We know of no venues that this band plays.</h4>
     }
     else
     {
