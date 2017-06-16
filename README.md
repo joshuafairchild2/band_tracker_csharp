@@ -8,27 +8,15 @@
 
 ## Description
 
-This is an application.
+This application allows the user to:
+
+* Create a new band/concert venue
+* Assign an existing band to an existing venue or vice/versa
+* View all venues/bands or view an individual venue/band
+* Delete all venues/bands
+* Remove the relationship between a band and a venue
 
 ---
-
-<!-- #### Basic Specifications
-
-| Behavior | Example Input | Example Output |
-|----------|---------------|----------------|
-| User can view all stylists | *user navigates to index.cshtml* | All stylists are displayed in list format |  
-| User can add a stylist | "John Smith, (123)-456-7890" | All stylists are displayed in list format |  
-| User can view the page for an individual stylist | *user clicks hyperlinked stylist name from index.cshtml/result.cshtml* | All of the stylist's clients are displayed, as well as stylist info |
-| User can delete all stylists | *user clicks "Delete all stylists" button* | Confirmation page is shown, allowing the user to delete all stylists or return to index |
-| User can delete a single stylist | *user clicks "Delete this stylist" button* | All stylists are displayed in list format |
-| User can add a client, assigning them to a stylist | "Jenny, (123)-867-5309" | All of the stylist's clients are displayed |  
-| User can delete all clients of a single stylist | *user clicks "Delete this stylist's clients" button* | Stylist's page is displayed with no clients |  
-| User can remove a single client from a stylist's list | *user clicks "Delete" button* | All of the stylist's clients are displayed |  
-| User can update a clients information | "John Locke, (555)-987-1234" | All of the stylist's clients are displayed, including changes |
-| User can update a stylists information | "Sam Green, (555)-987-1234" | All of the stylist's clients are displayed, including changes |
-| User can look up stylists by name | "John Smith" | Results page is shown, displaying all stylist matches (or none if no matches) with hyperlinks to their page |
-
----- -->
 
 #### Setup/Installation Requirements
 
@@ -42,31 +30,55 @@ This is an application.
 
   `git clone https://github.com/joshuafairchild1/band_tracker_csharp`
 
+* Navigate to the root directory
+
+##### Database Setup
+
 * In PowerShell, run the following commands:
 
   `SQLCMD -S "(localdb)\mssqllocaldb"`
 
-  [DB COMMANDS GO HERE]
+  `CREATE DATABASE band_tracker;`
+
+  `GO`
+
+  `USE band_tracker;`
+
+  `GO`
+
+  `CREATE TABLE bands (id INT IDENTITY(1,1), name VARCHAR(255), number_of_members INT);`
+
+  `GO`
+
+  `CREATE TABLE venues (id INT IDENTITY(1,1), name VARCHAR(255), address VARCHAR(255));`
+
+  `GO`
+
+  `CREATE TABLE members (id INT IDENTITY(1,1), name VARCHAR(255), band_id INT);`
+
+  `GO`
+
+  `CREATE TABLE venues_bands (id INT IDENTITY(1,1), venue_id INT, band_id INT);`
 
   OR
 
 *  Open Microsoft SQL Server Management Studio
 
-* Select *File > Open > File* and select your [filename goes here]
+* Select *File > Open > File* and select your database of choice from the root directory (band_tracker.sql for running the application, or band_tracker_test.sql for running tests)
 
 * If the database does not already exist, add the following lines to the top of the script file:
 
-  `CREATE DATABASE [your_database_name]`
+  `CREATE DATABASE [your_database_name];`
 
   `GO`
 
 * Save the file and click "! Execute"
 
-* Navigate to the root directory in PowerShell and run `dnx kestrel` to start the server
+* In PowerShell, run `dnx kestrel` (from the root directory) to start the server
 
 * Navigate to `localhost:5004` in your web browser to view the application
 
-* Tests can be ran by running the command `dnx test` from PowerShell while within the root directory
+* Tests can be run with the command `dnx test` from PowerShell while within the root directory
 
 
 
