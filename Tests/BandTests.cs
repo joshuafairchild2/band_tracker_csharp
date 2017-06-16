@@ -42,6 +42,16 @@ namespace BandTracker.Objects
       Assert.Equal(controlBand, testBand);
     }
 
+    [Fact]
+    public void Band_Find_FindsBandById()
+    {
+      Band controlBand = new Band("The Beatles", 4);
+
+      Band testBand = Band.Find(controlBand.Id);
+
+      Assert.Equal(controlBand, testBand);
+    }
+
     public void Dispose()
     {
       Band.DeleteAll();

@@ -83,6 +83,11 @@ namespace BandTracker.Objects
       return allBands;
     }
 
+    public static Band Find(int idToFind)
+    {
+      return null;
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
