@@ -2,9 +2,9 @@
   Layout="Shared/_Layout.cshtml";
 }
 
-<h2 class="text-center">@Model["selected-band"].Name</h2>
-<hr>
-<div class="row">
+<div class="row well custom-well">
+  <h2 class="text-center">@Model["selected-band"].Name</h2>
+  <hr>
   <div class="col-sm-6">
     <h3>Venues that this band plays:</h3>
     @if(Model["band-venues"].Count ==0)
@@ -22,13 +22,12 @@
   <div class="col-sm-6">
     @if(Model["band-venues"].Count < Model["all-venues"].Count)
     {
-      <form action='/bands/@Model["selected-band"].Id/venues/new'>
+      <form action='/bands/@Model["selected-band"].Id/venues/new' class="inline-form">
         <button type="submit" class="btn btn-primary">Add venue to list</button>
       </form>
     }
+    <form action="/" class="text-center inline-form">
+      <button type="submit" class="btn btn-info">Home</button>
+    </form>
   </div>
 </div>
-
-<form action="/" class="text-center">
-  <button type="submit" class="btn btn-info">Home</button>
-</form>

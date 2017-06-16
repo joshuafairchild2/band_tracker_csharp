@@ -2,7 +2,7 @@
   Layout="Shared/_Layout.cshtml";
 }
 
-<form action='/bands/@Model["selected-band"].Id/venues/new' method="post">
+<form action='/bands/@Model["selected-band"].Id/venues/new' method="post" class="custom-well well">
   <div class="form-group">
     <label>Select a venue that this band has played:</label>
     <select name="venue-select" class="form-control" required>
@@ -22,5 +22,5 @@
         }
     </select>
   </div>
-  <button type="submit" class="btn btn-primary">Add venue to list</button>
+  <button type="submit" class="btn btn-primary btn-block">Add venue to list</button>
 </form>

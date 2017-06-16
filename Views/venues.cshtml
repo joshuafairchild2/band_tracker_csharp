@@ -2,7 +2,9 @@
   Layout="Shared/_Layout.cshtml";
 }
 
-<div class="row">
+<div class="row well custom-well text-center">
+  <h2 class="text-center">Venues</h2>
+  <hr>
   <div class="col-sm-6">
     @if(Model.Count == 0)
     {
@@ -12,24 +14,23 @@
     {
       @foreach(var venue in Model)
       {
-        <h3><a href="/venues/@venue.Id">@venue.Name</a></h3>
+        <h3>Name: <a href="/venues/@venue.Id">@venue.Name</a></h3>
       }
     }
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-6 btn-box">
     @if(Model.Count != 0)
     {
-      <form action="/venues/new">
-        <button type="submit" class="btn btn-primary">Add venue</button>
-      </form>
-      <form action="/venues/delete" method="post">
+      <form action="/venues/delete" method="post" class="inline-form">
         <input type="hidden" name="_method" value="DELETE">
         <button type="submit" class="btn btn-danger">Delete all venues</button>
       </form>
     }
+    <form action="/venues/new" class="inline-form">
+      <button type="submit" class="btn btn-primary">Add venue</button>
+    </form>
+    <form action="/" class="inline-form">
+      <button type="submit" class="btn btn-info">Home</button>
+    </form>
   </div>
 </div>
-
-<form action="/" class="text-center">
-  <button type="submit" class="btn btn-info">Home</button>
-</form>

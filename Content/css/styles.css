@@ -1,3 +1,22 @@
+body {
+  background-color: #08D9D6;
+}
+
+#header {
+  background-color: #EAEAEA;
+}
+
 .inline-form {
   display: inline;
+}
+
+.custom-well {
+  background-color: #EAEAEA;
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.btn-info {
+  background-color: #08D9D6;
 }

@@ -2,7 +2,9 @@
   Layout="Shared/_Layout.cshtml";
 }
 
-<div class="row">
+<div class="row well custom-well text-center">
+  <h2 class="text-center">Bands</h2>
+  <hr>
   <div class="col-sm-6">
     @if(Model.Count == 0)
     {
@@ -19,17 +21,16 @@
   <div class="col-sm-6">
     @if(Model.Count != 0)
     {
-      <form action="/bands/new">
-        <button type="submit" class="btn btn-primary">Add band</button>
-      </form>
-      <form action="/bands/delete" method="post">
+      <form action="/bands/delete" method="post" class="inline-form">
         <input type="hidden" name="_method" value="DELETE">
         <button type="submit" class="btn btn-danger">Delete all bands</button>
       </form>
     }
+    <form action="/bands/new" class="inline-form">
+      <button type="submit" class="btn btn-primary">Add band</button>
+    </form>
+    <form action="/" class="text-center inline-form">
+      <button type="submit" class="btn btn-info">Home</button>
+    </form>
   </div>
 </div>
-
-<form action="/" class="text-center">
-  <button type="submit" class="btn btn-info">Home</button>
-</form>

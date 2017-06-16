@@ -2,27 +2,50 @@
   Layout="Shared/_Layout.cshtml";
 }
 
-<h2 class="text-center"><form class="inline-form" action='/venues/@Model["selected-venue"].Id/edit'><button type="submit" class="btn btn-default btn-xs">Edit</button></form> @Model["selected-venue"].Name <small>@Model["selected-venue"].Address</small></h2>
-<hr>
-<div class="row">
-  <div class="col-sm-6">
-    <h3>Bands who play at this venue:</h3>
+<div class="well custom-well text-center">
+  <h2 class="text-center"><form class="inline-form" action='/venues/@Model["selected-venue"].Id/edit'><button type="submit" class="btn btn-default btn-xs">Edit</button></form> @Model["selected-venue"].Name <small>@Model["selected-venue"].Address</small></h2>
+  <hr>
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Bands who play at this venue:</h3>
 
-    @if(Model["venue-bands"].Count != 0 && !(Model.ContainsKey("list-edit")))
-    {
-      <form action='/venues/@Model["selected-venue"].Id/bands/delete/'>
-        <button type="submit" class="btn btn-primary">Edit list</button>
-      </form>
-    }
+      @if(Model["venue-bands"].Count != 0 && !(Model.ContainsKey("list-edit")))
+      {
+        <form action='/venues/@Model["selected-venue"].Id/bands/delete/'>
+          <button type="submit" class="btn btn-primary">Edit list</button>
+        </form>
+      }
 
-    @if(Model.ContainsKey("list-edit"))
-    {
-      <form action='/venues/@Model["selected-venue"].Id/bands/delete/' method="post">
-        <input type="hidden" name="_method" value="DELETE">
-        <button type="submit" class="btn btn-danger">Remove from list</button>
+      @if(Model.ContainsKey("list-edit"))
+      {
+        <form action='/venues/@Model["selected-venue"].Id/bands/delete/' method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="btn btn-danger">Remove from list</button>
+          @foreach(var band in Model["venue-bands"])
+          {
+            <h3><input type="checkbox" name="band" value="@band.Id"> @band.Name</h3>
+            <h4>Members:</h4>
+            <ul>
+              @foreach(var member in @band.GetMembers())
+              {
+                <li>@member.Name</li>
+              }
+            </ul>
+          }
+        </form>
+      }
+
+
+      @if(Model["venue-bands"].Count == 0)
+      {
+        <h4>We know of no bands who play this venue.</h4>
+      }
+
+      @if(Model["venue-bands"].Count != 0 && !(Model.ContainsKey("list-edit")))
+      {
         @foreach(var band in Model["venue-bands"])
         {
-          <h3><input type="checkbox" name="band" value="@band.Id"> @band.Name</h3>
+          <h3>@band.Name</h3>
           <h4>Members:</h4>
           <ul>
             @foreach(var member in @band.GetMembers())
@@ -31,44 +54,22 @@
             }
           </ul>
         }
-      </form>
-    }
-
-
-    @if(Model["venue-bands"].Count == 0)
-    {
-      <h4>We know of no bands who play this venue. If you know of one who has, feel free to <a href='/venues/@Model["selected-venue"].Id/bands/new'>add them.</a></h4>
-    }
-
-    @if(Model["venue-bands"].Count != 0 && !(Model.ContainsKey("list-edit")))
-    {
-      @foreach(var band in Model["venue-bands"])
-      {
-        <h3>@band.Name</h3>
-        <h4>Members:</h4>
-        <ul>
-          @foreach(var member in @band.GetMembers())
-          {
-            <li>@member.Name</li>
-          }
-        </ul>
       }
-    }
-  </div>
-  <div class="col-sm-6">
-    @if(Model["venue-bands"].Count < Model["all-bands"].Count)
-    {
-      <form action='/venues/@Model["selected-venue"].Id/bands/new'>
-        <button type="submit" class="btn btn-primary">Add band to list</button>
+    </div>
+    <div class="col-sm-6">
+      @if(Model["venue-bands"].Count < Model["all-bands"].Count)
+      {
+        <form action='/venues/@Model["selected-venue"].Id/bands/new' class="inline-form">
+          <button type="submit" class="btn btn-primary">Add band to list</button>
+        </form>
+      }
+      <form action='/venues/@Model["selected-venue"].Id/delete' method="post" class="inline-form">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-danger">Delete this venue</button>
       </form>
-    }
-    <form action='/venues/@Model["selected-venue"].Id/delete' method="post">
-      <input type="hidden" name="_method" value="DELETE">
-      <button type="submit" class="btn btn-danger">Delete this venue</button>
-    </form>
+      <form action="/" class="inline-form">
+        <button type="submit" class="btn btn-info">Home</button>
+      </form>
+    </div>
   </div>
 </div>
-
-<form action="/" class="text-center">
-  <button type="submit" class="btn btn-info">Home</button>
-</form>
