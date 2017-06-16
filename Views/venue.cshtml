@@ -2,7 +2,7 @@
   Layout="Shared/_Layout.cshtml";
 }
 
-<h2 class="text-center">@Model["selected-venue"].Name</h2>
+<h2 class="text-center"><form class="inline-form" action='/venues/@Model["selected-venue"].Id/edit'><button type="submit" class="btn btn-default btn-xs">Edit</button></form> @Model["selected-venue"].Name <small>@Model["selected-venue"].Address</small></h2>
 <hr>
 <div class="row">
   <div class="col-sm-6">
