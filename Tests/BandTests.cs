@@ -44,7 +44,7 @@ namespace BandTracker.Objects
 
     public void Dispose()
     {
-
+      Band.DeleteAll();
     }
   }
 }
