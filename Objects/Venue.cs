@@ -26,7 +26,31 @@ namespace BandTracker.Objects
 
     public static List<Venue> GetAll()
     {
-      return null;
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM venues", conn);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Venue> allVenues = new List<Venue>{};
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string address = rdr.GetString(2);
+
+        Venue newVenue = new Venue(name, address, id);
+        allVenues.Add(newVenue);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      DB.CloseConnection();
+
+      return allVenues;
     }
   }
 }
