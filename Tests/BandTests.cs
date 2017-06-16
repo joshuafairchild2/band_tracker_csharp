@@ -23,6 +23,25 @@ namespace BandTracker.Objects
       Assert.Equal(controlList, testList);
     }
 
+    [Fact]
+    public void Band_Save_SaveToDatabase()
+    {
+      Band newBand = new Band("The Beatles", 4);
+      newBand.Save();
+
+      Band testBand = Band.GetAll()[0];
+      Assert.Equal(newBand, testBand);
+    }
+
+    [Fact]
+    public void Band_Equals_BandEqualsBand()
+    {
+      Band controlBand = new Band("The Beatles", 4);
+      Band testBand = new Band("The Beatles", 4);
+
+      Assert.Equal(controlBand, testBand);
+    }
+
     public void Dispose()
     {
 

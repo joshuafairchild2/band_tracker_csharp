@@ -17,6 +17,11 @@ namespace BandTracker.Objects
       NumberOfMembers = numberOfMembers;
     }
 
+    public void Save()
+    {
+      
+    }
+
     public static List<Band> GetAll()
     {
       SqlConnection conn = DB.Connection();
