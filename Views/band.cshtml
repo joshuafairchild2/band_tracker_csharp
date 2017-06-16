@@ -15,13 +15,20 @@
     {
       @foreach(var venue in Model["band-venues"])
       {
-        <h3>Name: @venue.Name <small>Address: @venue.Address</small></h3>
+        <h3>@venue.Name <small>Address: @venue.Address</small></h3>
       }
     }
   </div>
   <div class="col-sm-6">
-    <form action='/bands/@Model["selected-band"].Id/venues/new'>
-      <button type="submit" class="btn btn-primary">Add venue to list</button>
-    </form>
+    @if(Model["band-venues"].Count < Model["all-venues"].Count)
+    {
+      <form action='/bands/@Model["selected-band"].Id/venues/new'>
+        <button type="submit" class="btn btn-primary">Add venue to list</button>
+      </form>
+    }
   </div>
 </div>
+
+<form action="/" class="text-center">
+  <button type="submit" class="btn btn-info">Home</button>
+</form>

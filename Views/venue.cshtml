@@ -27,8 +27,15 @@
     }
   </div>
   <div class="col-sm-6">
-    <form action='/venues/@Model["selected-venue"].Id/bands/new'>
-      <button type="submit" class="btn btn-primary">Add band to list</button>
-    </form>
+    @if(Model["venue-bands"].Count < Model["all-bands"].Count)
+    {
+      <form action='/venues/@Model["selected-venue"].Id/bands/new'>
+        <button type="submit" class="btn btn-primary">Add band to list</button>
+      </form>
+    }
   </div>
 </div>
+
+<form action="/" class="text-center">
+  <button type="submit" class="btn btn-info">Home</button>
+</form>
