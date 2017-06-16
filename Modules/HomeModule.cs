@@ -22,9 +22,30 @@ namespace BandTracker
       Get["/venues/new"] = _ => {
         return View["venue_form.cshtml"];
       };
-      // Get["/bands/new"] = _ => {
-      //   return View["band_form.cshtml"];
-      // };
+      Get["/bands/new"] = _ => {
+        return View["band_form.cshtml"];
+      };
+      Get["/bands/new/members"] = _ => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("part2", true);
+        model.Add("members", Request.Query["members-number"]);
+        return View["band_form.cshtml", model];
+      };
+      Post["/bands/new"] = _ => {
+        Band newBand = new Band(Request.Form["band-name"], Request.Form["members"]);
+        newBand.Save();
+        string membersValues = Request.Form["member-name"];
+        if(membersValues != null)
+        {
+          string[] members = membersValues.Split(',');
+          foreach(string member in members)
+          {
+            Member newMember = new Member(member, newBand.Id);
+          }
+        }
+        List<Band> allBands = Band.GetAll();
+        return View["bands.cshtml", allBands];
+      };
       Post["/venues/new"] = _ => {
         Venue newVenue = new Venue(Request.Form["venue-name"], Request.Form["venue-address"]);
         newVenue.Save();
