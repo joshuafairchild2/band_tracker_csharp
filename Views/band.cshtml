@@ -6,10 +6,10 @@
 <hr>
 <div class="row">
   <div class="col-sm-6">
-    <h3>Venues that this bnd has played:</h3>
+    <h3>Venues that this band has played:</h3>
     @if(Model["band-venues"].Count ==0)
     {
-      <h4>We know of no venues that this band has played. If you know of one they have, feel free to <a href='/bands/@Model["selected-band"].Id/venues/add'>add it.</a></h4>
+      <h4>We know of no venues that this band has played. If you know of one they have, feel free to <a href='/bands/@Model["selected-band"].Id/venues/new'>add it.</a></h4>
     }
     else
     {
@@ -20,6 +20,8 @@
     }
   </div>
   <div class="col-sm-6">
-    <p>Other stuff over here?</p>
+    <form action='/bands/@Model["selected-band"].Id/venues/new'>
+      <button type="submit" class="btn btn-primary">Add venue to list</button>
+    </form>
   </div>
 </div>

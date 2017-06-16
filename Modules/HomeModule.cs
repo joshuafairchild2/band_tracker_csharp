@@ -41,6 +41,7 @@ namespace BandTracker
           foreach(string member in members)
           {
             Member newMember = new Member(member, newBand.Id);
+            newMember.Save();
           }
         }
         List<Band> allBands = Band.GetAll();
@@ -65,6 +66,23 @@ namespace BandTracker
         model.Add("selected-band", selectedBand);
         model.Add("band-venues", selectedBand.GetVenues());
         return View["band.cshtml", model];
+      };
+      Get["/venues/{id}/bands/new"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Venue selectedVenue = Venue.Find(parameters.id);
+        model.Add("selected-venue", selectedVenue);
+        model.Add("venue-bands", selectedVenue.GetBands());
+        model.Add("all-bands", Band.GetAll());
+        return View["add_band.cshtml", model];
+      };
+      Post["/venues/{id}/bands/new"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Venue selectedVenue = Venue.Find(parameters.id);
+        Band selectedBand = Band.Find(Request.Form["band-select"]);
+        selectedVenue.AddBand(selectedBand);
+        model.Add("selected-venue", selectedVenue);
+        model.Add("venue-bands", selectedVenue.GetBands());
+        return View["venue.cshtml", model];
       };
     }
   }

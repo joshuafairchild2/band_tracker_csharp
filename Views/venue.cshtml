@@ -9,7 +9,7 @@
     <h3>Bands who have played this venue:</h3>
     @if(Model["venue-bands"].Count ==0)
     {
-      <h4>We know of no bands who have played at this venue. If you know of one who has, feel free to <a href='/venues/@Model["selected-venue"].Id/bands/add'>add them.</a></h4>
+      <h4>We know of no bands who have played at this venue. If you know of one who has, feel free to <a href='/venues/@Model["selected-venue"].Id/bands/new'>add them.</a></h4>
     }
     else
     {
@@ -27,6 +27,8 @@
     }
   </div>
   <div class="col-sm-6">
-    <p>Other stuff over here?</p>
+    <form action='/venues/@Model["selected-venue"].Id/bands/new'>
+      <button type="submit" class="btn btn-primary">Add band to list</button>
+    </form>
   </div>
 </div>

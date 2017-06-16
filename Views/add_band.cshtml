@@ -1,0 +1,26 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+<form action='/venues/@Model["selected-venue"].Id/bands/new' method="post">
+  <div class="form-group">
+    <label>Select a band that has played this venue:</label>
+    <select name="band-select" class="form-control">
+      @foreach(var band in @Model["all-bands"])
+        {
+          @if(@Model["venue-bands"].Count != 0)
+          {
+            @if(!@Model["venue-bands"].Contains(band))
+            {
+              <option value="@band.Id">@band.Name</option>
+            }
+          }
+          else
+          {
+            <option value="@band.Id">@band.Name</option>
+          }
+        }
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Add band to list</button>
+</form>
