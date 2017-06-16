@@ -143,6 +143,16 @@ namespace BandTracker.Objects
       DB.CloseConnection();
     }
 
+    public void AddVenue(Venue toAdd)
+    {
+
+    }
+
+    public List<Venue> GetVenues()
+    {
+      return null;
+    }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();
